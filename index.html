@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Stopwatch JS</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Stopwatch</h1>
+      <div id="stopWatch">00:00:00.00</div>
+      <div id="buttonGroup">
+        <button id="startButton" class="mainButton bgGreen">Start</button>
+        <button id="stopButton" class="mainButton bgRed" style="display: none">
+          Stop
+        </button>
+        <button
+          id="lapButton"
+          class="mainButton bgButton"
+          style="display: none"
+        >
+          Lap
+        </button>
+        <button
+          id="continueButton"
+          class="mainButton bgGreen"
+          style="display: none"
+        >
+          Continue
+        </button>
+        <button id="resetButton" class="mainButton bgRed" style="display: none">
+          Clear
+        </button>
+      </div>
+      <table id="lapListTable" cellspacing="0" cellpadding="10" style="display: none">
+        <thead>
+          <tr>
+            <th>Delete</th>
+            <th>Elapsed time</th>
+            <th>Comment</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+
+        </tbody>
+      </table>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

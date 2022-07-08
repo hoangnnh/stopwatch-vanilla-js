@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@1,700&family=Finlandica:ital,wght@1,700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-family: "Finlandica", sans-serif;
+  font-size: 52px;
+}
+
+#stopWatch {
+  font-family: "Courier Prime", monospace;
+  font-size: 36px;
+  background: rgb(202, 202, 202);
+  margin: 0 auto 30px;
+  width: 350px;
+  border: 2px solid #686868;
+  border-radius: 15px;
+}
+
+#buttonGroup {
+  margin-bottom: 50px;
+}
+
+.mainButton {
+  width: 180px;
+  font-size: 21px;
+  color: #f0f0f0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: transform 10ms linear;
+}
+
+.mainButton:active {
+  transform: scale(0.97);
+}
+
+#lapListTable {
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  background: #f0f0f0;
+  width: auto;
+}
+
+#lapListTable thead {
+  background: gray;
+}
+
+#lapListTable th,
+#lapListTable td {
+  padding: 10px 15px;
+  font-family: "Courier New", monospace;
+  font-size: 21px;
+}
+
+/* #lapListTable tr:nth-last-of-type(even) {
+  background: #d4d4d4;
+} */
+
+#lapListTable input {
+  width: 350px;
+  height: 30px;
+  font-size: 24px;
+}
+
+.bgGreen {
+  background: rgb(50, 180, 50);
+}
+
+.bgRed {
+  background: rgb(189, 29, 29);
+}
+
+.bgButton {
+  background: rgb(136, 136, 136);
+}
