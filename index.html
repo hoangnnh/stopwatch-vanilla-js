@@ -10,14 +10,14 @@
   <body>
     <div class="container">
       <h1>Stopwatch</h1>
-      <div id="stopWatch">00:00:00.00</div>
+      <div id="stopWatch">00:00:00:0</div>
       <div id="buttonGroup">
         <button id="startButton" class="mainButton bgGreen">Start</button>
-        <button id="stopButton" class="mainButton bgRed" style="display: none">
-          Stop
+        <button id="pauseButton" class="mainButton bgRed" style="display: none">
+          Pause
         </button>
         <button
-          id="lapButton"
+          id="newLapButton"
           class="mainButton bgButton"
           style="display: none"
         >
@@ -34,20 +34,18 @@
           Clear
         </button>
       </div>
-      <table id="lapListTable" cellspacing="0" cellpadding="10" style="display: none">
+      <table id="lapListTable" cellspacing="0" cellpadding="10">
         <thead>
           <tr>
-            <th>Delete</th>
-            <th>Elapsed time</th>
-            <th>Comment</th>
+            <th class="lapDelete">Delete</th>
+            <th class="lapRecord">Elapsed time</th>
+            <th class="lapComment">Comment</th>
           </tr>
         </thead>
-        <tbody>
-          
-
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
+    <script src="./lib/easytimer.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

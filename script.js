@@ -1,99 +1,90 @@
 const startButton = document.getElementById("startButton");
-const stopButton = document.getElementById("stopButton");
-const lapButton = document.getElementById("lapButton");
+const pauseButton = document.getElementById("pauseButton");
+const newLapButton = document.getElementById("newLapButton");
 const continueButton = document.getElementById("continueButton");
 const resetButton = document.getElementById("resetButton");
 
 const stopWatchDisplay = document.getElementById("stopWatch");
 const lapListTable = document.querySelector("#lapListTable tbody");
 
-let stopWatchInterval = null;
-let milliSecond = 0,
-  second = 0,
-  minute = 0,
-  hour = 0;
+let lapId = 0;
+
+const timer = new easytimer.Timer();
+easytimerConfig = {
+  precision: "secondTenths",
+};
 
 startButton.addEventListener("click", () => {
-  stopWatchInterval = setInterval(stopWatch, 10);
+  activateStopWatch();
 
   startButton.style.display = "none";
-  stopButton.style.display = "inline";
-  lapButton.style.display = "inline";
+  pauseButton.style.display = "inline";
+  newLapButton.style.display = "inline";
 });
 
-stopButton.addEventListener("click", () => {
-  clearInterval(stopWatchInterval);
+pauseButton.addEventListener("click", () => {
+  timer.pause();
+  createNewLapItem();
 
-  stopButton.style.display = "none";
-  lapButton.style.display = "none";
+  pauseButton.style.display = "none";
+  newLapButton.style.display = "none";
   continueButton.style.display = "inline";
   resetButton.style.display = "inline";
 });
 
 continueButton.addEventListener("click", () => {
-  stopWatchInterval = setInterval(stopWatch, 10);
+  timer.start();
 
-  stopButton.style.display = "inline";
-  lapButton.style.display = "inline";
+  pauseButton.style.display = "inline";
+  newLapButton.style.display = "inline";
   continueButton.style.display = "none";
   resetButton.style.display = "none";
 });
 
 resetButton.addEventListener("click", () => {
-  stopWatchInterval = null;
-  milliSecond = 0;
-  second = 0;
-  minute = 0;
-  hour = 0;
-  stopWatchDisplay.textContent = "00:00:00.00";
+  timer.stop();
+  stopWatchDisplay.textContent = "00:00:00.0";
   lapListTable.innerHTML = "";
 
   startButton.style.display = "inline";
-  stopButton.style.display = "none";
-  lapButton.style.display = "none";
+  pauseButton.style.display = "none";
+  newLapButton.style.display = "none";
   continueButton.style.display = "none";
   resetButton.style.display = "none";
 });
 
-lapButton.addEventListener("click", () => {
+newLapButton.addEventListener("click", () => {
   createNewLapItem();
 });
 
-function stopWatch() {
-  milliSecond++;
-  if (milliSecond === 99) {
-    milliSecond = 0;
-    second++;
+lapListTable.addEventListener("click", (event) => {
+  if (event.target.nodeName.toLowerCase() === "button") {
+    event.target.parentNode.parentNode.remove();
   }
-  if (second === 59) {
-    second = 0;
-    minute++;
-  }
-  if (minute === 59) {
-    minute = 0;
-    hour++;
-  }
+});
 
-  stopWatchDisplay.textContent =
-    (hour <= 9 ? `0${hour}` : hour) +
-    ":" +
-    (minute <= 9 ? `0${minute}` : minute) +
-    ":" +
-    (second <= 9 ? `0${second}` : second) +
-    "." +
-    (milliSecond <= 9 ? `0${milliSecond}` : milliSecond);
+function activateStopWatch() {
+  timer.start(easytimerConfig);
+
+  timer.addEventListener("secondTenthsUpdated", () => {
+    stopWatchDisplay.textContent =
+      timer.getTimeValues().toString(["hours", "minutes", "seconds"]) +
+      `.${timer.getTimeValues().toString(["secondTenths"])}`;
+  });
 }
 
 function createNewLapItem() {
   const lapItem = document.createElement("tr");
+  lapItem.setAttribute("id", `lap-${lapId}`);
+  lapId++;
   lapItem.innerHTML = `
-  <td>
-  <button>X</button>
-</td>
-<td>${stopWatchDisplay.textContent}</td>
-<td>
-  <input type="text" />
-</td>
+  <td class="lapDelete">
+    <button>X</button>
+  </td>
+  <td class="lapRecord">${stopWatchDisplay.textContent}</td>
+  <td class="lapComment">
+    <input type="text" />
+  </td>
   `;
   lapListTable.appendChild(lapItem);
 }

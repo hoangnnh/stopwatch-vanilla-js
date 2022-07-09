@@ -46,13 +46,22 @@ h1 {
 #lapListTable {
   margin: 0 auto;
   text-align: center;
-  border: 2px solid gray;
+  border: none;
   border-radius: 10px;
   background: #f0f0f0;
-  width: auto;
+  max-width: 600px;
+  width: 100%;
 }
 
-#lapListTable thead {
+#lapListTable thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+#lapListTable thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+#lapListTable thead tr {
   background: gray;
 }
 
@@ -63,14 +72,17 @@ h1 {
   font-size: 21px;
 }
 
-/* #lapListTable tr:nth-last-of-type(even) {
-  background: #d4d4d4;
-} */
-
 #lapListTable input {
-  width: 350px;
-  height: 30px;
-  font-size: 24px;
+  height: 26px;
+  font-size: 18px;
+}
+
+#lapListTable .lapComment {
+  width: 50%;
+}
+
+#lapListTable .lapDelete button {
+  cursor: pointer
 }
 
 .bgGreen {
